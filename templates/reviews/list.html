@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}بررسی‌ها{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">بررسی‌ها</h1>
+<div class="space-y-3">
+    {% for review in object_list %}
+        <div class="bg-slate-800 p-4 rounded">
+            <a href="/reviews/{{ review.pk }}/" class="font-semibold hover:text-indigo-300">{{ review.game.title }}</a>
+            <p class="text-sm text-slate-300">{{ review.body|truncatewords:25 }}</p>
+            <p class="text-xs text-slate-400">امتیاز: {{ review.rating }}</p>
+        </div>
+    {% empty %}
+        <p class="text-slate-400">بررسی‌ای موجود نیست.</p>
+    {% endfor %}
+</div>
+{% endblock %}

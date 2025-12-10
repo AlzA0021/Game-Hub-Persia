@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}تقویم انتشار{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">تقویم انتشار</h1>
+<div class="space-y-3">
+    {% for release in object_list %}
+        <div class="bg-slate-800 p-4 rounded flex justify-between">
+            <div>
+                <p class="font-semibold">{{ release.game.title }}</p>
+                <p class="text-xs text-slate-400">{{ release.platform.name }} {{ release.region }}</p>
+            </div>
+            <div class="text-sm text-indigo-200">{{ release.release_date|date:"Y-m-d" }}</div>
+        </div>
+    {% empty %}
+        <p class="text-slate-400">تاریخ انتشار ثبت نشده است.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}ژانرها{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">ژانرها</h1>
+<div class="grid md:grid-cols-3 gap-4">
+    {% for genre in object_list %}
+        <div class="bg-slate-800 p-4 rounded">
+            <p class="font-semibold">{{ genre.name }}</p>
+            <p class="text-sm text-slate-400">{{ genre.description|truncatewords:20 }}</p>
+        </div>
+    {% empty %}
+        <p class="text-slate-400">ژانری ثبت نشده است.</p>
+    {% endfor %}
+</div>
+{% endblock %}

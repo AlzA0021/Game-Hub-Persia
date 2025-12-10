@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}پلتفرم‌ها{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">پلتفرم‌ها</h1>
+<div class="grid md:grid-cols-3 gap-4">
+    {% for platform in object_list %}
+        <div class="bg-slate-800 p-4 rounded">
+            <p class="font-semibold">{{ platform.name }}</p>
+            <p class="text-sm text-slate-400">{{ platform.manufacturer }}</p>
+        </div>
+    {% empty %}
+        <p class="text-slate-400">پلتفرمی ثبت نشده است.</p>
+    {% endfor %}
+</div>
+{% endblock %}

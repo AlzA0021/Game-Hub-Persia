@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}جستجو{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">نتایج جستجو برای «{{ query }}»</h1>
+<div class="grid md:grid-cols-3 gap-6">
+    <section class="bg-slate-800 p-4 rounded">
+        <h2 class="font-semibold mb-3">بازی‌ها</h2>
+        <ul class="space-y-2 text-sm">
+            {% for game in games %}
+                <li><a href="/games/{{ game.slug }}/" class="hover:text-indigo-300">{{ game.title }}</a></li>
+            {% empty %}
+                <li class="text-slate-400">موردی یافت نشد.</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section class="bg-slate-800 p-4 rounded">
+        <h2 class="font-semibold mb-3">اخبار</h2>
+        <ul class="space-y-2 text-sm">
+            {% for article in news %}
+                <li><a href="/news/{{ article.slug }}/" class="hover:text-indigo-300">{{ article.title }}</a></li>
+            {% empty %}
+                <li class="text-slate-400">موردی یافت نشد.</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section class="bg-slate-800 p-4 rounded">
+        <h2 class="font-semibold mb-3">بررسی‌ها</h2>
+        <ul class="space-y-2 text-sm">
+            {% for review in reviews %}
+                <li><a href="/reviews/{{ review.pk }}/" class="hover:text-indigo-300">{{ review.game.title }}</a></li>
+            {% empty %}
+                <li class="text-slate-400">موردی یافت نشد.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}

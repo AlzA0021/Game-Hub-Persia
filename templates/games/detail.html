@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block content %}
+<article class="bg-slate-800 p-6 rounded shadow">
+    <h1 class="text-3xl font-bold mb-2">{{ object.title }}</h1>
+    <p class="text-sm text-slate-400 mb-4">انتشار: {{ object.release_date|date:"Y-m-d" }}</p>
+    <div class="flex flex-wrap gap-4 text-sm text-slate-200 mb-4">
+        <span>میانگین امتیاز: {{ object.average_rating|floatformat:1 }}</span>
+        <span>تعداد امتیازها: {{ object.rating_count }}</span>
+        <span>تعداد بررسی‌ها: {{ object.review_count }}</span>
+        <span>علاقه‌مندی‌ها: {{ object.favorites_count }}</span>
+    </div>
+    <p class="mb-4 leading-7">{{ object.description }}</p>
+    <div class="flex flex-wrap gap-2 text-xs text-indigo-200">
+        {% for genre in object.genres.all %}
+            <span class="px-2 py-1 bg-indigo-600 rounded">{{ genre.name }}</span>
+        {% endfor %}
+        {% for platform in object.platforms.all %}
+            <span class="px-2 py-1 bg-slate-700 rounded">{{ platform.name }}</span>
+        {% endfor %}
+    </div>
+</article>
+
+<section class="mt-6">
+    <h2 class="text-xl font-semibold mb-3">انتشارها</h2>
+    <div class="space-y-2">
+        {% for release in object.releases.all %}
+            <div class="bg-slate-800 p-3 rounded text-sm flex justify-between">
+                <span>{{ release.platform.name }} {{ release.region }}</span>
+                <span>{{ release.release_date|date:"Y-m-d" }}</span>
+            </div>
+        {% empty %}
+            <p class="text-slate-400">تاریخ انتشار ثبت نشده است.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="mt-6">
+    <h2 class="text-xl font-semibold mb-3">بررسی‌ها</h2>
+    <div class="space-y-3">
+        {% for review in object.reviews.all %}
+            <div class="bg-slate-800 p-4 rounded">
+                <p class="text-sm">{{ review.body|truncatewords:30 }}</p>
+                <p class="text-xs text-slate-400 mt-1">امتیاز: {{ review.rating }}</p>
+            </div>
+        {% empty %}
+            <p class="text-slate-400">بررسی‌ای برای این بازی ثبت نشده است.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

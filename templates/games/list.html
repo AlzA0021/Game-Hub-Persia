@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}بازی‌ها{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">فهرست بازی‌ها</h1>
+<div class="grid md:grid-cols-3 gap-4">
+    {% for game in object_list %}
+        <div class="bg-slate-800 p-4 rounded">
+            <a href="/games/{{ game.slug }}/" class="text-lg font-semibold hover:text-indigo-300">{{ game.title }}</a>
+            <p class="text-sm text-slate-400">{{ game.developer }}</p>
+            <p class="text-xs text-slate-500">{{ game.release_date|date:"Y-m-d" }}</p>
+        </div>
+    {% empty %}
+        <p class="text-slate-400">هیچ بازی موجود نیست.</p>
+    {% endfor %}
+</div>
+{% endblock %}

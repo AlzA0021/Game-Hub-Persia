@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block content %}
+<article class="bg-slate-800 p-6 rounded">
+    <h1 class="text-3xl font-bold mb-3">{{ object.title }}</h1>
+    <div class="leading-7 space-y-4">{{ object.content|linebreaks }}</div>
+</article>
+{% endblock %}
