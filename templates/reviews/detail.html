@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}بررسی {{ object.game.title }}{% endblock %}
+{% block content %}
+<article class="bg-slate-800 p-6 rounded">
+    <h1 class="text-2xl font-bold mb-2">{{ object.game.title }}</h1>
+    <p class="text-sm text-slate-400 mb-4">امتیاز: {{ object.rating }}</p>
+    <div class="leading-7">{{ object.body|linebreaks }}</div>
+</article>
+{% endblock %}

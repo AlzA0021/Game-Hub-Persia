@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}خانه - گیم هاب{% endblock %}
+{% block content %}
+<section class="grid gap-10">
+    <div>
+        <h2 class="text-xl font-semibold mb-4">جدیدترین بازی‌ها</h2>
+        <div class="grid gap-4 md:grid-cols-3">
+            {% for game in latest_games %}
+                <div class="bg-slate-800 rounded p-4 shadow">
+                    <h3 class="font-bold text-lg mb-2"><a href="/games/{{ game.slug }}/" class="hover:text-indigo-300">{{ game.title }}</a></h3>
+                    <p class="text-sm text-slate-300 line-clamp-3">{{ game.description|default:""|truncatewords:20 }}</p>
+                    <p class="text-xs text-slate-400 mt-2">انتشار: {{ game.release_date|date:"Y-m-d" }}</p>
+                </div>
+            {% empty %}
+                <p class="text-slate-400">بازی‌ای ثبت نشده است.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div>
+            <h2 class="text-xl font-semibold mb-4">آخرین اخبار</h2>
+            <div class="space-y-3">
+                {% for item in latest_news %}
+                    <div class="bg-slate-800 p-4 rounded">
+                        <a href="/news/{{ item.slug }}/" class="font-semibold hover:text-indigo-300">{{ item.title }}</a>
+                        <p class="text-xs text-slate-400 mt-1">{{ item.published_at|date:"Y-m-d" }}</p>
+                    </div>
+                {% empty %}
+                    <p class="text-slate-400">خبری موجود نیست.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <h2 class="text-xl font-semibold mb-4">آخرین بررسی‌ها</h2>
+            <div class="space-y-3">
+                {% for review in latest_reviews %}
+                    <div class="bg-slate-800 p-4 rounded">
+                        <a href="/reviews/{{ review.pk }}/" class="font-semibold hover:text-indigo-300">{{ review.game.title }}</a>
+                        <p class="text-sm text-slate-300 mt-1">امتیاز: {{ review.rating }}</p>
+                        <p class="text-xs text-slate-400">{{ review.created_at|date:"Y-m-d" }}</p>
+                    </div>
+                {% empty %}
+                    <p class="text-slate-400">بررسی‌ای ثبت نشده است.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

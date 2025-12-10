@@ -1,2 +1,3 @@
 # Phase 4 URLs Views Templates
-(Full content will be placed here)
+
+لایهٔ نمایشی با قالب پایه Tailwind و صفحات RTL شامل خانه، فهرست و جزئیات بازی‌ها، اخبار، بررسی‌ها، ژانرها، پلتفرم‌ها، نتایج جستجو و صفحات ایستا تکمیل شده است. viewهای کلاس‌پایه در `apps/pages/site_views.py` دادهٔ لازم را تأمین می‌کنند و در `core/urls.py` نگاشت می‌شوند.

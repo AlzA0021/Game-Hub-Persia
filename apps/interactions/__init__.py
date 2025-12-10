@@ -1,1 +1,1 @@
-# interactions __init__.py
+default_app_config = 'apps.interactions.apps.InteractionsConfig'

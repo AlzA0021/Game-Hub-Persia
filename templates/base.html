@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}گیم هاب{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.10/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen">
+    <header class="bg-slate-800 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+            <a href="/" class="text-2xl font-bold text-indigo-300">گیم هاب</a>
+            <nav class="flex gap-4 text-sm">
+                <a href="/games/" class="hover:text-indigo-300">بازی‌ها</a>
+                <a href="/news/" class="hover:text-indigo-300">اخبار</a>
+                <a href="/reviews/" class="hover:text-indigo-300">بررسی‌ها</a>
+                <a href="/releases/" class="hover:text-indigo-300">تقویم انتشار</a>
+                <a href="/genres/" class="hover:text-indigo-300">ژانرها</a>
+                <a href="/platforms/" class="hover:text-indigo-300">پلتفرم‌ها</a>
+            </nav>
+            <form action="/search/" method="get" class="flex gap-2">
+                <input type="text" name="q" placeholder="جستجو..." value="{{ request.GET.q }}" class="bg-slate-700 rounded px-3 py-2 text-sm w-48" />
+                <button class="px-3 py-2 bg-indigo-500 rounded text-white text-sm">جستجو</button>
+            </form>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-slate-800 border-t border-slate-700 mt-10">
+        <div class="container mx-auto px-4 py-6 text-sm text-slate-400">تمامی حقوق محفوظ است.</div>
+    </footer>
+</body>
+</html>

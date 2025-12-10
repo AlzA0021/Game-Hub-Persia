@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}اخبار{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">آخرین اخبار</h1>
+<div class="space-y-4">
+    {% for article in object_list %}
+        <article class="bg-slate-800 p-4 rounded">
+            <a href="/news/{{ article.slug }}/" class="text-lg font-semibold hover:text-indigo-300">{{ article.title }}</a>
+            <p class="text-xs text-slate-400 mt-1">{{ article.published_at|date:"Y-m-d" }}</p>
+        </article>
+    {% empty %}
+        <p class="text-slate-400">خبری موجود نیست.</p>
+    {% endfor %}
+</div>
+{% endblock %}
